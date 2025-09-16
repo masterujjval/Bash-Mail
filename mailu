@@ -1,0 +1,23 @@
+#! /bin/bash
+
+echo "Enter the message body:- "
+read n
+
+# for attachements one at a time
+echo "Enter attachement or path:- "
+read a 
+
+# mail address
+echo "Enter mail address:- "
+read mail
+
+sub="Dont look at this.."
+
+if [[ -z "$a" ]];
+then
+    echo "Sending mail without attachement ;) "
+    echo "$n" | mail -s "$sub" "$mail"
+else
+    echo "$n" | mail -s "$sub" -A "$a" "$mail" 
+fi
+echo "Mission Accomplished..Nice Work Mate!"
