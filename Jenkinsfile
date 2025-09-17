@@ -18,16 +18,7 @@ node {
             input message: "Tests passed. Approve to merge PR?", ok: "Merge"
         }
 
-        stage('Merge PR') {
-            withCredentials([string(credentialsId: 'GITHUB_TOKEN', variable: 'GH_TOKEN')]) {
-                def apiUrl = "https://api.github.com/repos/masterujjval/Bash-Mail/pulls/${env.CHANGE_ID}/merge"
-                sh """
-                curl -X PUT \\
-                -H "Authorization: token ${GH_TOKEN}" \\
-                -H "Content-Type: application/json" \\
-                ${apiUrl}
-                """
-            }
-        }
+        // You can optionally trigger a manual merge via GitHub UI after approval
+        echo "PR approved. Ready to merge via GitHub."
     }
 }
